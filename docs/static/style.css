@@ -3,3 +3,43 @@
 #query-output{grid-column:1/-1;width:100%}
 .chart-mode{display:flex;gap:3px;padding:3px;border:1px solid #26392b;background:#09120d;border-radius:7px}.chart-mode button{border:0;border-radius:5px;background:transparent;color:#85988b;font:600 9px 'DM Sans';padding:7px 9px;cursor:pointer;white-space:nowrap}.chart-mode button.active{background:#173520;color:var(--green)}
 @media(max-width:520px){.chart-heading{align-items:flex-start;gap:8px}.chart-mode button{padding:6px 7px;font-size:8px}}
+@media(max-width:600px){
+  html,body{width:100%;overflow-x:hidden}
+  .app-shell,.main-content,.workspace,.panel{min-width:0}
+  .sidebar{width:100%;padding:12px 12px 10px;overflow:hidden}
+  .distribution-nav{width:100%;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+  .distribution-nav::-webkit-scrollbar{display:none}
+  .nav-item{flex:0 0 auto;width:auto}
+  .main-content{padding:0 12px 18px}
+  .page-heading{align-items:center;gap:8px;padding:21px 0 16px}
+  .eyebrow{font-size:8px;letter-spacing:.8px}
+  h1{font-size:clamp(23px,7vw,30px)}
+  .heading-symbol{font-size:27px}
+  .parameter-grid.count-1{grid-template-columns:minmax(0,1fr)}
+  .chart-heading{align-items:flex-start;flex-direction:column;gap:10px}
+  .chart-mode{align-self:flex-start;margin-left:36px}
+  .chart-mode button{padding:7px 10px;font-size:9px}
+  .chart-wrap{height:220px}
+  .chart-caption{align-items:flex-start;gap:8px;line-height:1.45}
+  #domain-count{text-align:right;white-space:nowrap}
+  .query-panel{padding:15px 13px}
+  .query-copy{gap:8px}
+  .query-copy p{line-height:1.5}
+  .query-controls{min-width:0}
+  .examples{gap:5px}
+  .examples button{padding:6px 7px}
+  .query-result{display:grid;grid-template-columns:32px minmax(0,1fr);column-gap:10px;row-gap:8px;align-items:start}
+  .result-detail{grid-column:2;max-width:none;width:100%;margin:0;text-align:left;line-height:1.5}
+  .footer{gap:8px;line-height:1.5;flex-wrap:wrap}
+}
+@media(max-width:380px){
+  .live-badge{padding:6px 7px;letter-spacing:.5px}
+  .crumb{font-size:10px}
+  .parameter-grid,.parameter-grid.count-2,.parameter-grid.count-3{grid-template-columns:minmax(0,1fr)}
+  .field,.update-button{grid-column:1}
+  .stats-panel{grid-template-columns:minmax(0,1fr)}
+  .stats-panel>.panel-heading,.stats-foot{grid-column:1}
+  .chart-wrap{height:195px}
+  .chart-caption{font-size:8px}
+  .examples>span{width:100%}
+}
