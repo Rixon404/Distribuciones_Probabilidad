@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07100b">
+  <title>Distribuciones | Laboratorio estadístico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/style.css"><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="./"><span class="brand-mark">∿</span><span><b>ESTADÍSTICA</b><small>LABORATORIO VISUAL</small></span></a>
+      <div class="nav-label">EXPLORAR</div>
+      <nav class="distribution-nav" aria-label="Distribuciones">
+        <button class="nav-item" data-distribution="Uniforme"><span class="nav-icon">▥</span><span>Uniforme</span><span class="nav-arrow">↗</span></button>
+        <button class="nav-item" data-distribution="Binomial"><span class="nav-icon">⌁</span><span>Binomial</span><span class="nav-arrow">↗</span></button>
+        <button class="nav-item" data-distribution="Hipergeométrica"><span class="nav-icon">◉</span><span>Hipergeométrica</span><span class="nav-arrow">↗</span></button>
+        <button class="nav-item active" data-distribution="Poisson"><span class="nav-icon">⌘</span><span>Poisson</span><span class="nav-arrow">↗</span></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="status-dot"></div><span>Motor estadístico activo</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><div class="crumb">Laboratorio <span>/</span> Distribuciones</div><div class="live-badge"><i></i> EXPLORACIÓN EN VIVO</div></header>
+      <section class="page-heading"><div><div class="eyebrow">PROBABILIDAD DISCRETA <span></span> <b id="dist-number">04</b> — 04</div><h1>Distribución <em id="dist-title">Poisson</em></h1><p>Modela resultados, ajusta parámetros y consulta probabilidades.</p></div><div class="heading-symbol" id="heading-symbol">04</div></section>
+
+      <form class="workspace" id="explore-form">
+        <section class="panel parameter-panel"><div class="panel-heading"><div><span class="section-index">01</span><h2>Parámetros</h2></div><span class="panel-hint">Edita para actualizar el modelo</span></div><div class="parameter-grid" id="parameter-grid"></div><div class="error-note" id="error-note" hidden></div></section>
+        <section class="overview-grid">
+          <div class="panel chart-panel"><div class="panel-heading chart-heading"><div><span class="section-index">02</span><div><h2>Función de probabilidad</h2><p>Probabilidad para cada valor posible de X</p></div></div><span class="chart-legend"><i></i> P(X = x)</span></div><div class="chart-wrap"><canvas id="pmfChart" aria-label="Gráfica de probabilidad" role="img"></canvas></div><div class="chart-caption"><span><i class="caption-dot"></i> Cada punto representa un resultado posible</span><span id="domain-count"></span></div></div>
+          <aside class="panel stats-panel"><div class="panel-heading"><div><span class="section-index">03</span><h2>Resumen</h2></div><span class="stats-spark">⌁</span></div><div class="stat-block"><span>MEDIA <b>μ</b></span><strong id="stat-mean">—</strong></div><div class="stat-block"><span>VARIANZA <b>σ²</b></span><strong id="stat-variance">—</strong></div><div class="stat-block"><span>DESVIACIÓN ESTÁNDAR <b>σ</b></span><strong id="stat-std">—</strong></div><div class="stats-foot"><span class="status-dot"></span> Cálculo actualizado</div></aside>
+        </section>
+        <section class="panel query-panel"><div class="query-copy"><span class="section-index">04</span><div><h2>Buscar una probabilidad</h2><p>Escribe un valor de X o una condición para consultar la gráfica.</p></div></div><div class="query-controls"><label class="query-input-wrap"><span class="query-prefix">P(</span><input id="query-input" placeholder="x = 3" autocomplete="off" aria-label="Condición sobre X"><span class="query-suffix">)</span></label><button type="submit" class="search-button">Calcular <span>→</span></button></div><div class="examples"><span>PRUEBA:</span><button type="button" data-query="x=3">x = 3</button><button type="button" data-query="x<2">x &lt; 2</button><button type="button" data-query="0<=x<3">0 ≤ x &lt; 3</button></div><div id="query-output"></div></section>
+        <footer class="footer"><span>LABORATORIO DE DISTRIBUCIONES</span><span>Modelo discreto <b>·</b> <span id="footer-dist">Poisson</span></span></footer>
+      </form>
+    </main>
+  </div>
+  <script src="static/app.js"></script>
+</body>
+</html>
