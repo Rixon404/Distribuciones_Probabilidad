@@ -18,6 +18,12 @@
   const queryInput = document.getElementById('query-input');
   const errorBox = document.getElementById('error-note');
   const output = document.getElementById('query-output');
+  const formatXAxis = value => {
+    const number = Number(value);
+    if (!Number.isFinite(number)) return value;
+    const rounded = Number(number.toFixed(4));
+    return Object.is(rounded, -0) ? '0' : String(rounded);
+  };
 
   function buildFields() {
     const fields = configs[current];
@@ -149,8 +155,8 @@
       pointBackgroundColor: lastXs.map((_, i) => chosen.has(i) ? '#f4c27a' : '#42f58d'),
       pointBorderColor: lastXs.map((_, i) => chosen.has(i) ? '#fff0cf' : '#b8ffd1'), pointBorderWidth: lastXs.map((_, i) => chosen.has(i) ? 2 : 1) };
     const options = { responsive: true, maintainAspectRatio: false, interaction: { intersect: false, mode: 'index' },
-      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#15251a', titleColor: '#e9f4eb', bodyColor: '#a9bdad', borderColor: '#34543c', borderWidth: 1, padding: 10, callbacks: { label: item => graphMode === 'cumulative' ? ` F(${item.label})  ${Number(item.raw).toFixed(6)}` : current === 'Normal' ? ` f(${Number(item.label).toFixed(3)})  ${Number(item.raw).toFixed(6)}` : ` P(X = ${item.label})  ${Number(item.raw).toFixed(6)}` } } },
-      scales: { x: { title: { display: true, text: 'VALORES DE X', color: '#7e9284', font: { family: 'DM Sans', size: 9, weight: '600' }, padding: { top: 10 } }, ticks: { color: '#819487', maxTicksLimit: 13, font: { family: 'DM Sans', size: 9 } }, grid: { color: 'rgba(141, 179, 154, .12)' } },
+      plugins: { legend: { display: false }, tooltip: { backgroundColor: '#15251a', titleColor: '#e9f4eb', bodyColor: '#a9bdad', borderColor: '#34543c', borderWidth: 1, padding: 10, callbacks: { title: items => current === 'Normal' ? formatXAxis(items[0].label) : items[0].label, label: item => graphMode === 'cumulative' ? ` F(${current === 'Normal' ? formatXAxis(item.label) : item.label})  ${Number(item.raw).toFixed(6)}` : current === 'Normal' ? ` f(${formatXAxis(item.label)})  ${Number(item.raw).toFixed(6)}` : ` P(X = ${item.label})  ${Number(item.raw).toFixed(6)}` } } },
+      scales: { x: { title: { display: true, text: 'VALORES DE X', color: '#7e9284', font: { family: 'DM Sans', size: 9, weight: '600' }, padding: { top: 10 } }, ticks: { color: '#819487', maxTicksLimit: 13, font: { family: 'DM Sans', size: 9 }, callback: function(value) { const label = this.getLabelForValue(value); return current === 'Normal' ? formatXAxis(label) : label; } }, grid: { color: 'rgba(141, 179, 154, .12)' } },
         y: { beginAtZero: true, max: graphMode === 'cumulative' ? 1 : undefined, title: { display: true, text: graphMode === 'cumulative' ? 'PROBABILIDAD ACUMULADA' : current === 'Normal' ? 'DENSIDAD' : 'PROBABILIDAD', color: '#7e9284', font: { family: 'DM Sans', size: 9, weight: '600' }, padding: { bottom: 8 } }, ticks: { color: '#819487', maxTicksLimit: 5, font: { family: 'DM Sans', size: 9 } }, grid: { color: 'rgba(141, 179, 154, .12)' } } } };
     if (chart) { chart.data.labels = lastXs; chart.data.datasets = [dataset]; chart.update(); }
     else chart = new Chart(ctx, { type: 'line', data: { labels: lastXs, datasets: [dataset] }, options });
