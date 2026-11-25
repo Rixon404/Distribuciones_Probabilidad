@@ -43,3 +43,6 @@
   .chart-caption{font-size:8px}
   .examples>span{width:100%}
 }
+.field select{height:39px;width:100%;min-width:0;max-width:100%;padding:0 11px;background:#08100b;border:1px solid #26392b;border-radius:7px;color:var(--white);font:500 12px 'DM Sans';outline:none;cursor:pointer}
+.field select:focus{border-color:#42b773;box-shadow:0 0 0 3px #42f58d12}
+.field select option{background:#0d1711;color:var(--white)}
